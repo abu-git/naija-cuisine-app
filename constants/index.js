@@ -27,7 +27,7 @@ export const foods = [
         stars: '4.5',
         title: 'Main dishes',
         image: require('../assets/images/jollof.jpg'),
-        desc: 'The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a single pot, although its ingredients and preparation methods vary across different regions.'
+        desc: 'The dish is made with long-grain rice, tomatoes, onions, spices, vegetables and meat.'
     },
     {
         id: 2,
