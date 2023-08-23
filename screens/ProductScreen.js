@@ -1,10 +1,11 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ArrowLeftCircleIcon, MinusIcon, PlusIcon } from 'react-native-heroicons/outline'
-import { StarIcon } from 'react-native-heroicons/solid'
+import { SafeAreaView, } from 'react-native-safe-area-context'
+import { ArrowLeftCircleIcon, MinusIcon, PlusIcon, ShoppingCartIcon, ShoppingBagIcon } from 'react-native-heroicons/outline'
+import { StarIcon, HomeIcon, CreditCardIcon } from 'react-native-heroicons/solid'
 import { useNavigation } from '@react-navigation/native'
+
 
 export default function ProductScreen(props) {
     const item = props.route.params
@@ -15,14 +16,14 @@ export default function ProductScreen(props) {
         <View className="flex-1 bg-orange-100">
             <StatusBar style='light' />
             {/* top background image */}
-            <Image source={require('../assets/images/background2.jpg')} 
-                className="w-full absolute -top-5 opacity-95"
+            <Image source={require('../assets/images/background1.jpg')} 
+                className="w-full absolute -top-5 opacity-90"
                 style={{ height: 170, borderBottomLeftRadius: 50, borderBottomRightRadius: 50 }}
             />
 
             <SafeAreaView>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <ArrowLeftCircleIcon size="50" color="white" />
+                <TouchableOpacity className="ml-1 mt-2" onPress={() => navigation.goBack()}>
+                    <ArrowLeftCircleIcon size="50" color="#21180e" />
                 </TouchableOpacity>
                 {/* logo image */}
                 <View className="flex-row justify-center mt-4">
@@ -32,7 +33,7 @@ export default function ProductScreen(props) {
                     />
                 </View>
 
-                <View className="px-4 mt-4 border-b-2 border-gray-200">
+                <View className="px-4 mt-6 border-b-2 border-gray-200">
                     <View className="flex-row justify-between items-center">
                         <Text className="text-2xl font-semibold">{item.name}</Text>
                         <Image source={item.image} className="w-40 h-40 rounded-xl" />
@@ -74,7 +75,7 @@ export default function ProductScreen(props) {
                             <Text className="text-lg font-semibold text-black">{item.stars}</Text>
                         </View>
                         <Text className="my-3 text-lg font-light">Size: 
-                            {size === 'small' && (<Text className="font-normal">150kg</Text>)} {size === 'medium' && (<Text className="font-normal">220kg</Text>)} {size === 'large' && (<Text className="font-normal">270kg</Text>)}
+                            {size === 'small' && (<Text className="font-normal">1.5ltr</Text>)} {size === 'medium' && (<Text className="font-normal">2l</Text>)} {size === 'large' && (<Text className="font-normal">2.5l</Text>)}
                         </Text>
                     </View>
                 </View>
@@ -92,7 +93,36 @@ export default function ProductScreen(props) {
                         </TouchableOpacity>
                     </View>
                 </View>
+
+                <View className='flex-row justify-center mt-3'>
+                    <TouchableOpacity className="mx-4 bg-[#21180e] p-1 py-5 rounded-t px-32 flex-row justify-center">
+                        <Text className="text-white text-center">Add to Cart</Text>
+                        <ShoppingCartIcon size="24" color="white" />
+                    </TouchableOpacity>
+                </View>
+                <View className="flex-row justify-center mx-4 mt-1">
+                    <TouchableOpacity className="ml-4 bg-orange-200 p-1 py-5 rounded-l px-8 flex-row justify-center items-center w-1/2 mr-1">
+                        <Text className="text-black text-center text-xs mr-2">Continue shopping</Text>
+                        <HomeIcon size="20" color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity className="mr-4 bg-orange-200 p-1 py-5 rounded-r px-8 flex-row justify-center items-center w-1/2">
+                        <Text className="text-black text-center text-xs mr-2">Proceed</Text>
+                        <CreditCardIcon size="20" color="black" />
+                    </TouchableOpacity>
+                </View>
+                {/*<View className="bg-orange-100 flex-row justify-between mx-4">
+                    <TouchableOpacity onPress={() => navigation.goBack()} className="flex-row justify-center items-center w-1/2 border h-16">
+                        <Text className="mr-2">Continue shopping</Text>
+                        <HomeIcon size="24" color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity className="flex-row justify-center items-center w-1/2 border h-16">
+                        <Text className="mr-2">Proceed</Text>
+                        <ShoppingBagIcon size="24" color="black" />
+                    </TouchableOpacity>
+    </View>*/}
+                
             </SafeAreaView>
         </View>
     )
 }
+

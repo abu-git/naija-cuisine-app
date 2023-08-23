@@ -56,4 +56,13 @@ export const foods = [
         image: require('../assets/images/vegetable.jpg'),
         desc: 'Edikang Ikong soup is a traditional Nigerian soup that is highly nutritious and protein-packed.'
     },
+    {
+        id: 5,
+        name: 'Ogbono soup',
+        price: 'R120',
+        stars: '4.0',
+        title: 'Traditional',
+        image: require('../assets/images/ogbono.jpg'),
+        desc: 'Ogbono soup is a traditional Nigerian soup that is highly nutritious and protein-packed.'
+    },
 ]
