@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+
 import { categories, foods } from '../constants'
 import FoodCard from '../components/FoodCard'
+import CategoriesCard from '../components/CategoriesCard'
 import Carousel from 'react-native-snap-carousel'
 
 export default function HomeScreen() {
@@ -28,7 +30,7 @@ export default function HomeScreen() {
                 </View>
 
                 {/* categories */}
-                <View className="mt-14 px-4">
+                <View className="mt-14">
                     <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -40,8 +42,8 @@ export default function HomeScreen() {
                             return(
                                 <TouchableOpacity
                                     onPress={() => setActiveCategory(item.id)}
-                                    style={{ backgroundColor: isActive ? "#21180e" : "white"}}
-                                    className="p-4 px-5 rounded-full mr-2 shadow"
+                                    style={{ backgroundColor: isActive ? "#21180e" : "#fed7aa"}}
+                                    className="p-4 px-5 border-2 rounded-full mr-2 shadow-md"
                                 >
                                     <Text className={"font-semibold " + activeTestClass}>{item.title}</Text>
                                 </TouchableOpacity>
@@ -50,8 +52,24 @@ export default function HomeScreen() {
                     />
                 </View>
 
+                {/* categories cards */}
+                <View className="mt-4">
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={foods}
+                        keyExtractor={item => item.id}
+                        renderItem={({item}) => {
+                            return(
+                                <CategoriesCard item={item} />
+                            )
+                        }}
+                    />
+                </View>
+                
+                <Text className="mx-4 font-extrabold text-2xl mt-6">Hot picks.</Text>
                 {/* food cards */}
-                <View className="mt-16 py-2">
+                <View className="mt-1 py-2">
                     <Carousel
                         containerCustomStyle={{ overflow: "visible" }}
                         data={foods}
