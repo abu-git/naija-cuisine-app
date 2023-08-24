@@ -5,12 +5,27 @@ import { SafeAreaView, } from 'react-native-safe-area-context'
 import { ArrowLeftCircleIcon, MinusIcon, PlusIcon, ShoppingCartIcon, ShoppingBagIcon } from 'react-native-heroicons/outline'
 import { StarIcon, HomeIcon, CreditCardIcon } from 'react-native-heroicons/solid'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, removeFromCart, selectCartTotal, selectItems } from '../features/counterSlice'
 
 
 export default function ProductScreen(props) {
     const item = props.route.params
     const navigation = useNavigation()
     const [size, setSize] = useState('small')
+
+    const dispatch = useDispatch()
+    const cartItems = useSelector((state) => selectItems(state))
+
+    const addToCartBasket = (item) => {
+        dispatch(addToCart(item))
+    }
+
+    const removeFromCartBasket = (item) => {
+        if(!selectItems.length > 0) return
+
+        dispatch(removeFromCart(item))
+    }
 
     return (
         <View className="flex-1 bg-orange-100">
@@ -84,11 +99,11 @@ export default function ProductScreen(props) {
                     <Text className="text-3xl font-semibold px-4">{item.price}</Text>
                     
                     <View className="flex-row items-center space-x-4 border-gray-500 border rounded-full p-1 px-4">
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={removeFromCartBasket}>
                             <MinusIcon size="20" strokeWidth={3} color="black" />
                         </TouchableOpacity>
-                        <Text className="font-extrabold text-lg text-black">2</Text>
-                        <TouchableOpacity>
+                        <Text className="font-extrabold text-lg text-black">{cartItems.length}</Text>
+                        <TouchableOpacity onPress={addToCartBasket}>
                             <PlusIcon size="20" strokeWidth={3} color="black" />
                         </TouchableOpacity>
                     </View>
